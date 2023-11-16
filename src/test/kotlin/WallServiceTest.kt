@@ -17,12 +17,22 @@ class WallServiceTest {
     }
 
     @Test
-    fun update() {
+    fun updateTrue() {
         WallService.add(Post(text = "post1", likes = Post.Like()))
         WallService.add(Post(text = "post2", likes = Post.Like()))
 
         val update = Post(id = 1, text = "post1_updated", likes = Post.Like())
         val result = WallService.update(update)
         assertTrue(result)
+    }
+
+    @Test
+    fun updateFalse() {
+        WallService.add(Post(text = "post1", likes = Post.Like()))
+        WallService.add(Post(text = "post2", likes = Post.Like()))
+
+        val update = Post(id = 0, text = "postupdated", likes = Post.Like())
+        val result = WallService.update(update)
+        assertFalse(result)
     }
 }
